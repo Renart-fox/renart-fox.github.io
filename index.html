@@ -28,17 +28,39 @@
           <div id="meme" class="nes-container is-rounded" style="display: none; background-color: white; color: black;">
             <span>La commande "!meme" permet d'afficher un meme à l'écran. Elle prend 3 paramètres :</span>
             <ul>
-              <li>Le nom du meme parmi : miel / fire_girl / hmmm / mbappe / thinking</li>
+              <li>Le numéro du meme</li>
               <li>Le texte à afficher au dessus de l'image</li>
               <li>Le texte à afficher en dessous de l'image</li>
             </ul>
             <p>Par exemple, pour afficher la tête de miel avec deux textes, on peut écrire :</p>
-            <p style="border: 1px solid black; background-color: black; color: white; font-family: 'Courier New', Courier, monospace;">!meme miel//texte du haut//texte du bas</p>
+            <p style="border: 1px solid black; background-color: black; color: white; font-family: 'Courier New', Courier, monospace;">!meme 4//texte du haut//texte du bas</p>
+            <div class="container" id="meme-image-list">
+
+            </div>
           </div>
+
           <br/>
           <button type="button" class="nes-btn" onclick="showDiv('ping')" style="margin-top: 1rem;">!ping</button>
           <div id="ping" class="nes-container is-rounded" style="display: none; background-color: white; color: black;">
             <span>Affiche "pong" dans le chat. Vous vous attendiez à quoi ?</span>
+          </div>
+
+          <br/>
+          <button type="button" class="nes-btn" onclick="showDiv('prout')" style="margin-top: 1rem;">!prout</button>
+          <div id="prout" class="nes-container is-rounded" style="display: none; background-color: white; color: black;">
+            <span>Fait un bruit de pet. On adore l'humour par ici.</span>
+          </div>
+
+          <br/>
+          <button type="button" class="nes-btn" onclick="showDiv('discord-cmd')" style="margin-top: 1rem;">!discord</button>
+          <div id="discord-cmd" class="nes-container is-rounded" style="display: none; background-color: white; color: black;">
+            <span>Donne le lien du discord. Ou alors vous pouvez directement <a href="https://discord.gg/He5aJyPhwt" target="_blank">cliquer ici</a>.</span>
+          </div>
+
+          <br/>
+          <button type="button" class="nes-btn" onclick="showDiv('mbda25')" style="margin-top: 1rem;">!mbda25</button>
+          <div id="mbda25" class="nes-container is-rounded" style="display: none; background-color: white; color: black;">
+            <span>Soutenez la chaîne en utilisant le code MBDA25 sur l'achat de votre prochaine tourelle semi-automatique !</span>
           </div>
         </div>
       </div>
@@ -54,6 +76,30 @@
       else {
         targetDiv.style.display = 'none';
       }
-    }
+    };
+
+    const populateMeme = () => {
+      let targetDiv = document.getElementById("meme-image-list");
+      for(let i=1; i<6; i++)
+      {
+        let container = document.createElement('div');
+        container.style.margin = '1.5rem';
+        let image = document.createElement('img');
+        image.src = '/assets/img/memes/'+i.toString()+'.jpg';
+        image.style.maxWidth = '300px';
+        let paragraph = document.createElement('p');
+        let text = document.createTextNode(i.toString());
+        container.appendChild(image);
+        paragraph.appendChild(text);
+        container.appendChild(paragraph);
+        targetDiv.appendChild(container);
+      }
+    };
+
+    const init = () => {
+      populateMeme();
+    };
+
+    document.onload = init()
   </script>
 </html>
